@@ -4,6 +4,16 @@ This project is forked from [pybullet-URDF-models](https://github.com/ChenEating
 
 A collection of URDF models for Pybullet. This repo is continually updated!
 - Utensil
+<p align="left">
+    <a href="">
+        <img src="utensil.jpeg" alt="[Logo]" width="15%">
+    </a>
+</p>
 - Furniture
 - Food
+<p align="left">
+    <a href="">
+        <img src="food.jpeg" alt="[Logo]" width="15%">
+    </a>
+</p>
 
