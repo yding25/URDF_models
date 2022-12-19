@@ -6,14 +6,14 @@ A collection of URDF models for Pybullet. This repo is continually updated!
 - Utensil
 <p align="left">
     <a href="">
-        <img src="utensil.jpeg" alt="[Logo]" width="25%">
+        <img src="https://raw.githubusercontent.com/yding25/pic_share/master/utensil.jpeg" height="300" />
     </a>
 </p>
 - Furniture
 - Food
 <p align="left">
     <a href="">
-        <img src="food.jpeg" alt="[Logo]" width="25%">
+        <img src="https://raw.githubusercontent.com/yding25/pic_share/master/food.jpeg" height="300" />
     </a>
 </p>
 
