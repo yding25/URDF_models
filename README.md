@@ -20,3 +20,4 @@ A collection of URDF models for Pybullet. This repo is continually updated! 💪
 
 - Furniture
 
+✨✨✨ **An interesting tool**: [display objects](https://colab.research.google.com/drive/1qLF2JoN9AXtYcFIgmnK8p0TFTuGG0tEB?usp=sharing)
