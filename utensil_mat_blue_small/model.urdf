@@ -15,7 +15,7 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="textured.obj" scale="0.8 0.8 0.8"/>
+        <mesh filename="textured.dae" scale="0.8 0.8 0.8"/>
       </geometry>
       <material name="blue">
         <color rgba="0.78 0.85 0.97 1."/>
@@ -23,7 +23,7 @@
     </visual>
     <collision>
       <geometry>
-    	 <mesh filename="textured.obj" scale="0.8 0.8 0.8"/>
+    	 <mesh filename="textured.dae" scale="0.8 0.8 0.8"/>
       </geometry>
     </collision>
   </link>
