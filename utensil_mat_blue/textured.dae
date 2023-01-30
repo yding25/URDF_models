@@ -5,21 +5,31 @@
       <author>Blender User</author>
       <authoring_tool>Blender 3.4.1 commit date:2022-12-19, commit time:17:00, hash:55485cb379f7</authoring_tool>
     </contributor>
-    <created>2023-01-30T12:41:08</created>
-    <modified>2023-01-30T12:41:08</modified>
+    <created>2023-01-30T13:19:28</created>
+    <modified>2023-01-30T13:19:28</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_effects>
     <effect id="_4_-_Default_001-effect">
       <profile_COMMON>
+        <newparam sid="texture_map_png-surface">
+          <surface type="2D">
+            <init_from>texture_map_png</init_from>
+          </surface>
+        </newparam>
+        <newparam sid="texture_map_png-sampler">
+          <sampler2D>
+            <source>texture_map_png-surface</source>
+          </sampler2D>
+        </newparam>
         <technique sid="common">
           <lambert>
             <emission>
               <color sid="emission">0 0 0 1</color>
             </emission>
             <diffuse>
-              <color sid="diffuse">0.8 0.8 0.8 1</color>
+              <texture texture="texture_map_png-sampler" texcoord="Mesh_001-mesh-map-0"/>
             </diffuse>
             <reflectivity>
               <float sid="specular">1</float>
@@ -32,7 +42,11 @@
       </profile_COMMON>
     </effect>
   </library_effects>
-  <library_images/>
+  <library_images>
+    <image id="texture_map_png" name="texture_map_png">
+      <init_from>texture_map.png</init_from>
+    </image>
+  </library_images>
   <library_materials>
     <material id="_4_-_Default_001-material" name="24 - Default.001">
       <instance_effect url="#_4_-_Default_001-effect"/>
@@ -85,12 +99,12 @@
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
       <node id="Mat" name="Mat" type="NODE">
-        <matrix sid="transform">0.002522251 0 0 0 0 -9.42365e-11 -0.0254 0 0 0.002155881 -1.11027e-9 0 0 0 0 1</matrix>
+        <matrix sid="transform">0.002522251 0 0 0 0 0.002155881 0 0 0 0 0.0254 0 0 0 0 1</matrix>
         <instance_geometry url="#Mesh_001-mesh" name="Mat">
           <bind_material>
             <technique_common>
               <instance_material symbol="_4_-_Default_001-material" target="#_4_-_Default_001-material">
-                <bind_vertex_input semantic="Mesh-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="Mesh_001-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
               </instance_material>
             </technique_common>
           </bind_material>
