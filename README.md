@@ -20,14 +20,4 @@ A collection of URDF models for Pybullet. This repo is continually updated! 💪
 
 - Furniture
 
-<br/>
-
-✨✨✨ **Tips**
-
-- [Pybullet script for display multiple urdf models](https://colab.research.google.com/drive/1qLF2JoN9AXtYcFIgmnK8p0TFTuGG0tEB?usp=sharing)
-- urdf-viz for display a urdf model
-   ```
-   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-   cargo install urdf-viz
-   urdf-viz XXX.urdf
-   ```
+✨✨✨ **An interesting tool**: [display objects](https://colab.research.google.com/drive/1qLF2JoN9AXtYcFIgmnK8p0TFTuGG0tEB?usp=sharing)
