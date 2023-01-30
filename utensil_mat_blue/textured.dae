@@ -5,31 +5,21 @@
       <author>Blender User</author>
       <authoring_tool>Blender 3.4.1 commit date:2022-12-19, commit time:17:00, hash:55485cb379f7</authoring_tool>
     </contributor>
-    <created>2023-01-30T12:29:22</created>
-    <modified>2023-01-30T12:29:22</modified>
+    <created>2023-01-30T12:41:08</created>
+    <modified>2023-01-30T12:41:08</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_effects>
-    <effect id="_4_-_Default-effect">
+    <effect id="_4_-_Default_001-effect">
       <profile_COMMON>
-        <newparam sid="Map__12-surface">
-          <surface type="2D">
-            <init_from>Map__12</init_from>
-          </surface>
-        </newparam>
-        <newparam sid="Map__12-sampler">
-          <sampler2D>
-            <source>Map__12-surface</source>
-          </sampler2D>
-        </newparam>
         <technique sid="common">
           <lambert>
             <emission>
               <color sid="emission">0 0 0 1</color>
             </emission>
             <diffuse>
-              <texture texture="Map__12-sampler" texcoord="UVChannel_1"/>
+              <color sid="diffuse">0.8 0.8 0.8 1</color>
             </diffuse>
             <reflectivity>
               <float sid="specular">1</float>
@@ -42,55 +32,51 @@
       </profile_COMMON>
     </effect>
   </library_effects>
-  <library_images>
-    <image id="texture_map" name="texture_map">
-      <init_from>texture_map.png</init_from>
-    </image>
-  </library_images>
+  <library_images/>
   <library_materials>
-    <material id="_4_-_Default-material" name="24 - Default">
-      <instance_effect url="#_4_-_Default-effect"/>
+    <material id="_4_-_Default_001-material" name="24 - Default.001">
+      <instance_effect url="#_4_-_Default_001-effect"/>
     </material>
   </library_materials>
   <library_geometries>
-    <geometry id="Mesh-mesh" name="Mesh">
+    <geometry id="Mesh_001-mesh" name="Mesh.001">
       <mesh>
-        <source id="Mesh-mesh-positions">
-          <float_array id="Mesh-mesh-positions-array" count="12">-148.6767 -282.947 0 148.6767 -282.947 0 -148.6767 282.947 0 148.6767 282.947 0</float_array>
+        <source id="Mesh_001-mesh-positions">
+          <float_array id="Mesh_001-mesh-positions-array" count="12">-148.6767 -282.947 0 148.6767 -282.947 0 -148.6767 282.947 0 148.6767 282.947 0</float_array>
           <technique_common>
-            <accessor source="#Mesh-mesh-positions-array" count="4" stride="3">
+            <accessor source="#Mesh_001-mesh-positions-array" count="4" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Mesh-mesh-normals">
-          <float_array id="Mesh-mesh-normals-array" count="3">0 0 1</float_array>
+        <source id="Mesh_001-mesh-normals">
+          <float_array id="Mesh_001-mesh-normals-array" count="3">0 0 1</float_array>
           <technique_common>
-            <accessor source="#Mesh-mesh-normals-array" count="1" stride="3">
+            <accessor source="#Mesh_001-mesh-normals-array" count="1" stride="3">
               <param name="X" type="float"/>
               <param name="Y" type="float"/>
               <param name="Z" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <source id="Mesh-mesh-map-0">
-          <float_array id="Mesh-mesh-map-0-array" count="12">1 0 0 1 0 0 1 0 1 1 0 1</float_array>
+        <source id="Mesh_001-mesh-map-0">
+          <float_array id="Mesh_001-mesh-map-0-array" count="12">1 0 0 1 0 0 1 0 1 1 0 1</float_array>
           <technique_common>
-            <accessor source="#Mesh-mesh-map-0-array" count="6" stride="2">
+            <accessor source="#Mesh_001-mesh-map-0-array" count="6" stride="2">
               <param name="S" type="float"/>
               <param name="T" type="float"/>
             </accessor>
           </technique_common>
         </source>
-        <vertices id="Mesh-mesh-vertices">
-          <input semantic="POSITION" source="#Mesh-mesh-positions"/>
+        <vertices id="Mesh_001-mesh-vertices">
+          <input semantic="POSITION" source="#Mesh_001-mesh-positions"/>
         </vertices>
-        <triangles material="_4_-_Default-material" count="2">
-          <input semantic="VERTEX" source="#Mesh-mesh-vertices" offset="0"/>
-          <input semantic="NORMAL" source="#Mesh-mesh-normals" offset="1"/>
-          <input semantic="TEXCOORD" source="#Mesh-mesh-map-0" offset="2" set="0"/>
+        <triangles material="_4_-_Default_001-material" count="2">
+          <input semantic="VERTEX" source="#Mesh_001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#Mesh_001-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#Mesh_001-mesh-map-0" offset="2" set="0"/>
           <p>1 0 0 2 0 1 0 0 2 1 0 3 3 0 4 2 0 5</p>
         </triangles>
       </mesh>
@@ -99,12 +85,12 @@
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
       <node id="Mat" name="Mat" type="NODE">
-        <matrix sid="transform">0.0254 0 0 0 0 0.02159315 1.11027e-9 0 0 -9.43867e-10 0.0254 0 0 0 0 1</matrix>
-        <instance_geometry url="#Mesh-mesh" name="Mat">
+        <matrix sid="transform">0.002522251 0 0 0 0 -9.42365e-11 -0.0254 0 0 0.002155881 -1.11027e-9 0 0 0 0 1</matrix>
+        <instance_geometry url="#Mesh_001-mesh" name="Mat">
           <bind_material>
             <technique_common>
-              <instance_material symbol="_4_-_Default-material" target="#_4_-_Default-material">
-                <bind_vertex_input semantic="UVChannel_1" input_semantic="TEXCOORD" input_set="0"/>
+              <instance_material symbol="_4_-_Default_001-material" target="#_4_-_Default_001-material">
+                <bind_vertex_input semantic="Mesh-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
               </instance_material>
             </technique_common>
           </bind_material>
