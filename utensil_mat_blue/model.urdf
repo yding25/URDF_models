@@ -17,13 +17,13 @@
       <geometry>
         <mesh filename="textured.obj" scale="1 1 1"/>
       </geometry>
-      <material name="white">
-        <color rgba="1. 1. 1. 1."/>
+      <material name="pink">
+        <color rgba="0.9 0.6 0.6 1."/>
       </material>
     </visual>
     <collision>
       <geometry>
-    	 	<mesh filename="textured.obj" scale="1 1 1"/>
+    	 <mesh filename="textured.obj" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
