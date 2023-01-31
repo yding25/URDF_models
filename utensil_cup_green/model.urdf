@@ -15,15 +15,15 @@
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="textured.obj" scale="1 1 1"/>
+        <mesh filename="textured.dae" scale="1 1 1"/>
       </geometry>
-      <material name="white">
-        <color rgba="1. 1. 1. 1."/>
+      <material name="green">
+        <color rgba="0.71 0.84 0.66 1."/>
       </material>
     </visual>
     <collision>
       <geometry>
-    	 	<mesh filename="collision.obj" scale="1 1 1"/>
+    	 	<mesh filename="textured.dae" scale="1 1 1"/>
       </geometry>
     </collision>
   </link>
