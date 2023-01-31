@@ -9,19 +9,9 @@
       <contact_erp value="1.0"/>
     </contact>
     <inertial>
-      <!-- Volume:  1.0103300500e-04 -->
-      <mass> 0.1 </mass>
-      <!-- Center of mass: -6.6484500000e-03  3.7968070000e-02 -1.8000000000e-07 -->
-      <pose> -6.6484500000e-03  3.7968070000e-02 -1.8000000000e-07 0 0 0 </pose>
-      <!-- Inertia matrix -->
-      <inertia>
-        <ixx>  3.1193489900e-04 </ixx>
-        <ixy> -7.3550222524e-10 </ixy>
-        <ixz>  4.4886322049e-10 </ixz>
-        <iyy>  1.6351267588e-04 </iyy>
-        <iyz>  5.1884035321e-10 </iyz>
-        <izz>  3.1193385993e-04 </izz>
-      </inertia>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <mass value="0.1"/>
+      <inertia ixx="3.e-04" ixy="0" ixz="0" iyy="1.6e-04" iyz="0" izz="3.e-04"/>
     </inertial>
     <visual>
       <geometry>
