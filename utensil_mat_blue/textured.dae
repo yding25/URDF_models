@@ -5,31 +5,21 @@
       <author>Blender User</author>
       <authoring_tool>Blender 3.4.1 commit date:2022-12-19, commit time:17:00, hash:55485cb379f7</authoring_tool>
     </contributor>
-    <created>2023-01-30T16:06:43</created>
-    <modified>2023-01-30T16:06:43</modified>
+    <created>2023-02-02T14:19:16</created>
+    <modified>2023-02-02T14:19:16</modified>
     <unit name="meter" meter="1"/>
     <up_axis>Z_UP</up_axis>
   </asset>
   <library_effects>
     <effect id="Material_001-effect">
       <profile_COMMON>
-        <newparam sid="texture_map_png-surface">
-          <surface type="2D">
-            <init_from>texture_map_png</init_from>
-          </surface>
-        </newparam>
-        <newparam sid="texture_map_png-sampler">
-          <sampler2D>
-            <source>texture_map_png-surface</source>
-          </sampler2D>
-        </newparam>
         <technique sid="common">
           <lambert>
             <emission>
               <color sid="emission">0 0 0 1</color>
             </emission>
             <diffuse>
-              <texture texture="texture_map_png-sampler" texcoord="UVMap"/>
+              <color sid="diffuse">0.8 0.8 0.8 1</color>
             </diffuse>
             <index_of_refraction>
               <float sid="ior">1.45</float>
@@ -39,11 +29,7 @@
       </profile_COMMON>
     </effect>
   </library_effects>
-  <library_images>
-    <image id="texture_map_png" name="texture_map_png">
-      <init_from>texture_map.png</init_from>
-    </image>
-  </library_images>
+  <library_images/>
   <library_materials>
     <material id="Material_001-material" name="Material.001">
       <instance_effect url="#Material_001-effect"/>
@@ -73,7 +59,7 @@
           </technique_common>
         </source>
         <source id="Cube_001-mesh-map-0">
-          <float_array id="Cube_001-mesh-map-0-array" count="72">0.625 0 0.375 0.25 0.375 0 0.625 0.25 0.375 0.5 0.375 0.25 0.625 0.5 0.375 0.75 0.375 0.5 0.625 0.75 0.375 1 0.375 0.75 0.375 0.5 0.125 0.75 0.125 0.5 0.875 0.5 0.625 0.75 0.625 0.5 0.625 0 0.625 0.25 0.375 0.25 0.625 0.25 0.625 0.5 0.375 0.5 0.625 0.5 0.625 0.75 0.375 0.75 0.625 0.75 0.625 1 0.375 1 0.375 0.5 0.375 0.75 0.125 0.75 0.875 0.5 0.875 0.75 0.625 0.75</float_array>
+          <float_array id="Cube_001-mesh-map-0-array" count="72">0.625 0 0.375 0.25 0.375 0 0.625 0.25 0.375 0.5 0.375 0.25 0.625 0.5 0.375 0.75 0.375 0.5 0.625 0.75 0.375 1 0.375 0.75 0.375 0.5 0.125 0.75 0.125 0.5 0.8750001 0.5 0.625 0.75 0.625 0.5 0.625 0 0.625 0.25 0.375 0.25 0.625 0.25 0.625 0.5 0.375 0.5 0.625 0.5 0.625 0.75 0.375 0.75 0.625 0.75 0.625 1 0.375 1 0.375 0.5 0.375 0.75 0.125 0.75 0.8750001 0.5 0.8750001 0.75 0.625 0.75</float_array>
           <technique_common>
             <accessor source="#Cube_001-mesh-map-0-array" count="36" stride="2">
               <param name="S" type="float"/>
@@ -96,16 +82,12 @@
   <library_visual_scenes>
     <visual_scene id="Scene" name="Scene">
       <node id="Cube" name="Cube" type="NODE">
-        <scale sid="scale">0.75 1.22 0.02</scale>
-        <rotate sid="rotationZ">0 0 1 0</rotate>
-        <rotate sid="rotationY">0 1 0 0</rotate>
-        <rotate sid="rotationX">1 0 0 0</rotate>
-        <translate sid="location">0 0 0</translate>
+        <matrix sid="transform">0.075 0 0 0 0 0.122 0 0 0 0 0.005 0 0 0 0 1</matrix>
         <instance_geometry url="#Cube_001-mesh" name="Cube">
           <bind_material>
             <technique_common>
               <instance_material symbol="Material_001-material" target="#Material_001-material">
-                <bind_vertex_input semantic="UVMap" input_semantic="TEXCOORD" input_set="0"/>
+                <bind_vertex_input semantic="Cube_001-mesh-map-0" input_semantic="TEXCOORD" input_set="0"/>
               </instance_material>
             </technique_common>
           </bind_material>
