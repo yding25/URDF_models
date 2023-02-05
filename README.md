@@ -1,8 +1,6 @@
 # URDF_models
 
-This project is forked from [pybullet-URDF-models](https://github.com/ChenEating716/pybullet-URDF-models). Thanks for the author's effort.
-
-A collection of URDF models for Pybullet. This repo is continually updated! 💪💪💪
+This repository contains a collection of URDF models for use with Pybullet, and is a fork of the [pybullet-URDF-models](https://github.com/ChenEating716/pybullet-URDF-models) project. We would like to extend our gratitude to the author for their hard work. Each model includes a license_info.txt file. This repository is constantly updated and improved.💪💪💪
 
 - Utensil
 <p align="left">
