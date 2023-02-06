@@ -9,13 +9,13 @@
       <contact_erp value="1.0"/>
     </contact>
     <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-      <mass value="0.1"/>
-      <inertia ixx="3.e-04" ixy="0" ixz="0" iyy="1.6e-04" iyz="0" izz="3.e-04"/>
+       <origin rpy="0 0 0" xyz="0 0 0"/>
+       <mass value="0.1"/>
+       <inertia ixx="8e-05" ixy="0" ixz="0" iyy="0.0002" iyz="0" izz="0.0002"/>
     </inertial>
     <visual>
       <geometry>
-        <mesh filename="textured.dae" scale="1.2 1.2 1.2"/>
+        <mesh filename="textured.obj" scale="1.2 1.2 1.2"/>
       </geometry>
       <material name="blue">
         <color rgba="0.78 0.85 0.97 1."/>
@@ -23,7 +23,7 @@
     </visual>
     <collision>
       <geometry>
-    	 	<mesh filename="textured.dae" scale="1.2 1.2 1.2"/>
+    	 	<mesh filename="collision.obj" scale="1.2 1.2 1.2"/>
       </geometry>
     </collision>
   </link>
