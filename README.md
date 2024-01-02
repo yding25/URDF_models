@@ -34,8 +34,8 @@ This info can prevent unreasonable scenes due to improper angles of the items, s
 - Display each URDF model: [Colab Code](https://colab.research.google.com/drive/1qLF2JoN9AXtYcFIgmnK8p0TFTuGG0tEB?usp=sharing)
 
 
-### Note that Some of the models are sourced from the [pybullet-URDF-models](https://github.com/ChenEating716/pybullet-URDF-models) project
+### Acknowledgement
 
-- we would like to extend our gratitude to the author for their hard work. 
+- Some of the models are sourced from the [pybullet-URDF-models](https://github.com/ChenEating716/pybullet-URDF-models) project, and we would like to extend our gratitude to the author for their hard work. 
 
 - This repository is constantly updated and improved.💪💪💪
