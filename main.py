@@ -64,7 +64,7 @@ print(f'subfolders: {subfolders}, urdf_paths: {urdf_paths}')
 # Load one object automatically
 # ----------------------------------------------------------------
 urdf_sizes = []
-for index in range(23, len(urdf_paths)):
+for index in range(89, len(urdf_paths)):
     print('-' * 30)
     print(f'index: {index}')
 

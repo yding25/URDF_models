@@ -1,8 +1,11 @@
 # URDF_models
 
-### This repository contains over 100 URDF models for use with Pybullet. 
+### Overview
+This repository is a comprehensive collection of over 100 URDF (Unified Robot Description Format) models, specifically designed for use with Pybullet. 
+It serves as a valuable resource for researchers, developers, and hobbyists in the field of robotics and simulation.
 
-### Some extra information are provided as shown in the table below. 
+### Model Details
+Each model in this repository is accompanied by detailed information to facilitate its use and integration. The following table outlines key attributes for each model:
 
 | index | subfolder_name   | relative_path                | size_x     | size_y     | size_z     | object_name     | euler_x | euler_y | euler_z | object_description                                                                                           |
 |-------|------------------|------------------------------|------------|------------|------------|-----------------|---------|---------|---------|-------------------------------------------------------------------------------------------------------------|
@@ -13,25 +16,22 @@
 | 4     | blue_moon        | blue_moon/model.urdf         | 0.063152   | 0.102187   | 0.258420   | blue_moon       | 0       | 0       | 0       | Laundry detergent in a red bottle with a Chinese brand label reading "Blue Moon". The bottle cap is darker. |
 | ...     | ...        | ...         | ...   | ...   | ...   | ...       | ...       | ...       | ...       | ... |
 
+#### Attributes Explained
+- subfolder_name: Name of the folder containing the URDF model.
 
-```
-- subfolder_name: name of the folder where each URDF model is stored. 
+- relative_path: Path to the URDF model file.
 
-- relative_path: path of each URDF model
+- size_x, size_y, size_z: Dimensions of the model in meters.
 
-- size_x, size_y, size_z: dimensions of each URDF model 
+- object_name:  Identical to the subfolder name, for easy reference.
 
-- object_name: name of each URDF model, which is the same as subfolder_name. 
+- euler_x, euler_y, euler_z: Suggested orientation for realistic positioning.
 
-- euler_x, euler_y, euler_z: recommended Euler angles for loading the items
+- object_description: Detailed annotation of each model.
 
-This info can prevent unreasonable scenes due to improper angles of the items, such as a chair being tilted. 
 
-- object_description: a human-annotated description of each URDF model 
-```
-
-### A few useful tools are provided to use this dataset.
-- Display each URDF model: [Colab Code](https://colab.research.google.com/drive/1qLF2JoN9AXtYcFIgmnK8p0TFTuGG0tEB?usp=sharing)
+### Tools and Resources
+- Model Visualization: To view and interact with these URDF models, use our provided: [Colab Code](https://colab.research.google.com/drive/1qLF2JoN9AXtYcFIgmnK8p0TFTuGG0tEB?usp=sharing)
 
 
 ### Acknowledgement
