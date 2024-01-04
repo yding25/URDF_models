@@ -1,56 +1,119 @@
 <?xml version="1.0" ?>
-<robot name="table.urdf">
-  <link name="baseLink">
-    <contact>
-      <lateral_friction value="1.0"/>
-    </contact>
-    <inertial>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
-       <mass value=".0"/>
-       <inertia ixx="1" ixy="0" ixz="0" iyy="1" iyz="0" izz="1"/>
-    </inertial>
+<robot name="simple_table">
+
+  <!-- Table top link -->
+  <link name="table_top">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0.6"/>
+      <origin xyz="0 0 0.75" rpy="0 0 0"/>
       <geometry>
-				<mesh filename="table.obj" scale="1.5 1 0.05"/>
+        <box size="1.5 1 0.05"/>
       </geometry>
-       <material name="white">
-        <color rgba="1 1 1 1"/>
+      <material name="wood">
+        <color rgba="0.76 0.69 0.57 1"/>
       </material>
     </visual>
     <collision>
-      <origin rpy="0 0 0" xyz="0 0 0.6"/>
+      <origin xyz="0 0 0.75" rpy="0 0 0"/>
       <geometry>
-	 	<box size="1.5 1 0.05"/>
+        <box size="1.5 1 0.05"/>
       </geometry>
     </collision>
-	<visual>
-      <origin rpy="0 0 0" xyz="-0.65 -0.4 0.29"/>
-      <geometry>
-	    <mesh filename="table.obj" scale="0.1 0.1 0.58"/>
-      </geometry>
-	  <material name="white"/>	 
-    </visual>
-    <visual>
-      <origin rpy="0 0 0" xyz="-0.65 0.4 0.29"/>
-      <geometry>
-        <mesh filename="table.obj" scale="0.1 0.1 0.58"/>
-      </geometry>
-	  <material name="white"/>
-	  </visual>
-    <visual>
-      <origin rpy="0 0 0" xyz="0.65 -0.4 0.29"/>
-      <geometry>
-        <mesh filename="table.obj" scale="0.1 0.1 0.58"/>
-      </geometry>
-	  <material name="white"/>
-	  </visual>
-    <visual>
-      <origin rpy="0 0 0" xyz="0.65 0.4 0.29"/>
-      <geometry>
-        <mesh filename="table.obj" scale="0.1 0.1 0.58"/>
-      </geometry>
-    </visual>
   </link>
-</robot>
 
+  <!-- First leg of the table -->
+  <link name="leg1">
+    <visual>
+      <origin xyz="-0.65 -0.45 0.35" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.7"/>
+      </geometry>
+      <material name="wood"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.65 -0.45 0.35" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.7"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Fixed joint connecting the first leg to the table top -->
+  <joint name="joint1" type="fixed">
+    <parent link="table_top"/>
+    <child link="leg1"/>
+    <origin xyz="-0.65 -0.45 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Second leg of the table -->
+  <link name="leg2">
+    <visual>
+      <origin xyz="-0.65 0.45 0.35" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.7"/>
+      </geometry>
+      <material name="wood"/>
+    </visual>
+    <collision>
+      <origin xyz="-0.65 0.45 0.35" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.7"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Fixed joint connecting the second leg to the table top -->
+  <joint name="joint2" type="fixed">
+    <parent link="table_top"/>
+    <child link="leg2"/>
+    <origin xyz="-0.65 0.45 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Third leg of the table -->
+  <link name="leg3">
+    <visual>
+      <origin xyz="0.65 -0.45 0.35" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.7"/>
+      </geometry>
+      <material name="wood"/>
+    </visual>
+    <collision>
+      <origin xyz="0.65 -0.45 0.35" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.7"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Fixed joint connecting the third leg to the table top -->
+  <joint name="joint3" type="fixed">
+    <parent link="table_top"/>
+    <child link="leg3"/>
+    <origin xyz="0.65 -0.45 0" rpy="0 0 0"/>
+  </joint>
+
+  <!-- Fourth leg of the table -->
+  <link name="leg4">
+    <visual>
+      <origin xyz="0.65 0.45 0.35" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.7"/>
+      </geometry>
+      <material name="wood"/>
+    </visual>
+    <collision>
+      <origin xyz="0.65 0.45 0.35" rpy="0 0 0"/>
+      <geometry>
+        <cylinder radius="0.05" length="0.7"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- Fixed joint connecting the fourth leg to the table top -->
+  <joint name="joint4" type="fixed">
+    <parent link="table_top"/>
+    <child link="leg4"/>
+    <origin xyz="0.65 0.45 0" rpy="0 0 0"/>
+  </joint>
+
+</robot>

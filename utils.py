@@ -118,13 +118,101 @@ class Client():
         object_id = pybullet.loadURDF(urdf_path, basePosition=urdf_pose, baseOrientation=urdf_orientation)
         return object_id
 
-    def get_bounding_box(self, obj_id):
+    def get_bounding_box_default(self, obj_id):
         (min_x, min_y, min_z), (max_x, max_y, max_z)= pybullet.getAABB(obj_id)
         return [min_x, min_y, min_z], [max_x, max_y, max_z]
 
+    def get_bounding_box(self, object_id, print_output=False): #TODO: use a polygon to represent the bounding box
+        """
+        This function retrieves the bounding box for a given object in the PyBullet simulation environment. 
+
+        Args:
+            object_id (int): The ID of the object in the PyBullet simulation.
+        Prints:
+            The function prints the minimum and maximum x, y, z coordinates of the bounding box of the object.
+        """
+        link_ids = [
+            i
+            for i in range(
+                -1, pybullet.getNumJoints(object_id)
+            )
+        ]
+        print(f'link_ids:{link_ids}')
+        min_x, min_y, min_z = float("inf"), float("inf"), float("inf")
+        max_x, max_y, max_z = float("-inf"), float("-inf"), float("-inf")
+        for link_id in link_ids:
+            (x_min, y_min, z_min), (x_max, y_max, z_max) = pybullet.getAABB(object_id, link_id)
+            min_x = min(min_x, x_min)
+            min_y = min(min_y, y_min)
+            min_z = min(min_z, z_min)
+            max_x = max(max_x, x_max)
+            max_y = max(max_y, y_max)
+            max_z = max(max_z, z_max)
+        
+        if print_output:
+            print("-" * 20 + "\n" + "object_id: {}".format(object_id))
+            print("min_x:{:.2f}, min_y:{:.2f}, min_z:{:.2f}".format(min_x, min_y, min_z))
+            print("max_x:{:.2f}, max_y:{:.2f}, max_z:{:.2f}".format(max_x, max_y, max_z))
+        
+        return [min_x, min_y, min_z], [max_x, max_y, max_z]
+
     def draw_aabb(self, object_id):
-        collision_distance = -0.01
-        aabb = inflate_aabb(pybullet.getAABB(object_id), collision_distance)
+        """
+        Draw an Axis-Aligned Bounding Box (AABB) around the specified table object in the simulation. The AABB is a box that covers the entire object based on its maximum and minimum coordinates along each axis. It can be useful for various purposes, such as collision detection, spatial partitioning, and bounding volume hierarchies.
+
+        Args:
+            table_id: The unique identifier of the table object in the simulation for which the AABB is to be drawn.
+        """
+        link_ids = [
+            i for i in range(-1, pybullet.getNumJoints(object_id))
+        ]
+        print(f'link_ids:{link_ids}')
+        for link_id in link_ids:
+            aabb = pybullet.getAABB(object_id, link_id)
+            aabb_min = aabb[0]
+            aabb_max = aabb[1]
+            corners = [
+                [aabb_min[0], aabb_min[1], aabb_min[2]],  # 0
+                [aabb_max[0], aabb_min[1], aabb_min[2]],  # 1
+                [aabb_max[0], aabb_max[1], aabb_min[2]],  # 2
+                [aabb_min[0], aabb_max[1], aabb_min[2]],  # 3
+                [aabb_min[0], aabb_min[1], aabb_max[2]],  # 4
+                [aabb_max[0], aabb_min[1], aabb_max[2]],  # 5
+                [aabb_max[0], aabb_max[1], aabb_max[2]],  # 6
+                [aabb_min[0], aabb_max[1], aabb_max[2]],  # 7
+            ]
+            lines = [
+                (0, 1),
+                (1, 2),
+                (2, 3),
+                (3, 0),  # bottom face
+                (4, 5),
+                (5, 6),
+                (6, 7),
+                (7, 4),  # top face
+                (0, 4),
+                (1, 5),
+                (2, 6),
+                (3, 7),  # vertical edges
+            ]
+            color = [1, 0, 0]
+            for line in lines:
+                pybullet.addUserDebugLine(
+                    lineFromXYZ=corners[line[0]],
+                    lineToXYZ=corners[line[1]],
+                    lineColorRGB=color,
+                    lineWidth=2,
+                )
+
+    def draw_aabb_link(self, object_id, link_id=-1):
+        """
+        Draw an Axis-Aligned Bounding Box (AABB) around the specified object or link in the simulation. The AABB is a box that covers the entire object based on its maximum and minimum coordinates along each axis. It can be useful for various purposes, such as collision detection, spatial partitioning, and bounding volume hierarchies.
+
+        Args:
+            object_id: The unique identifier of the object in the simulation for which the AABB is to be drawn.
+            link_id: The index of the link for which the AABB is to be drawn. Default is -1, which means the entire object.
+        """
+        aabb = pybullet.getAABB(object_id, link_id)
         aabb_min = aabb[0]
         aabb_max = aabb[1]
         corners = [
@@ -152,14 +240,12 @@ class Client():
             (3, 7),  # vertical edges
         ]
         color = [1, 0, 0]
-        life_time = 0.05
         for line in lines:
             pybullet.addUserDebugLine(
                 lineFromXYZ=corners[line[0]],
                 lineToXYZ=corners[line[1]],
                 lineColorRGB=color,
                 lineWidth=2,
-                lifeTime=life_time,
             )
 
     def wait(self, x): # seconds
