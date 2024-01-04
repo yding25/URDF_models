@@ -36,6 +36,8 @@ It serves as a valuable resource for researchers, developers, and hobbyists in t
 ### Tools and Resources
 - Model Visualization: To view and interact with these URDF models, use our provided: [Colab Code](https://colab.research.google.com/drive/1qLF2JoN9AXtYcFIgmnK8p0TFTuGG0tEB?usp=sharing)
 
+![](https://github.com/yding25/pic_share/blob/main/utensil.jpeg)
+
 
 ### Acknowledgement
 
