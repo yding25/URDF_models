@@ -5,7 +5,9 @@ This repository is a comprehensive collection of over 100 URDF (Unified Robot De
 It serves as a valuable resource for researchers, developers, and hobbyists in the field of robotics and simulation.
 
 ### Model Details
-Each model in this repository is accompanied by detailed information to facilitate its use and integration. The following table outlines key attributes for each model:
+
+**urdf_dataset.xlsx**: Each model in this repository is accompanied by detailed information to facilitate its use and integration. The following table outlines key attributes for each model:
+
 
 | index | subfolder_name   | relative_path                | size_x     | size_y     | size_z     | object_name     | euler_x | euler_y | euler_z | object_description                                                                                           |
 |-------|------------------|------------------------------|------------|------------|------------|-----------------|---------|---------|---------|-------------------------------------------------------------------------------------------------------------|
