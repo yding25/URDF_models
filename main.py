@@ -49,6 +49,7 @@ euler_zs = df['euler_z']
 # ----------------------------------------------------------------
 # Load i-th object
 # ----------------------------------------------------------------
+demo.wait(30)
 for index in range(0, len(subfolder_names)):
     # index = 40
     print(f'object index:{indexs[index]}')
@@ -60,6 +61,7 @@ for index in range(0, len(subfolder_names)):
     demo.remove_aabb_lines(line_ids)
     [min_x, min_y, min_z], [max_x, max_y, max_z] = demo.get_bounding_box(object_id, print_output=True)
     print(f'size_x:{abs(max_x-min_x)} size_y:{abs(max_y-min_y)} size_z:{abs(max_z-min_z)}')
+    color, depth, segment = demo.render_image()
     demo.wait(1)
     demo.remove_object(object_id)
 

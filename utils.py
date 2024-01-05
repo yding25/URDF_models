@@ -56,7 +56,7 @@ class Client():
         """
         self.cam_width, self.cam_height = 480, 480
         self.cam_target_pos = [0.0, 0.0, 0.5]
-        self.cam_distance = 1.5
+        self.cam_distance = 0.5
         self.cam_yaw, self.cam_pitch, self.cam_roll = -90, -90, 0
         self.cam_up, self.cam_up_axis_idx, self.cam_near_plane, self.cam_far_plane, self.cam_fov = [0, 0, 1], 2, 0.01, 100, 60
 
