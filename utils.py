@@ -9,7 +9,6 @@ import os, sys
 import time
 import pybullet
 import pybullet_data
-from urdf_models import models_data
 import random
 import numpy as np
 import matplotlib.pyplot as plt
@@ -21,7 +20,25 @@ import pandas as pd
 import math
 
 class Client():
+    """
+    Represents a PyBullet client for a robotics simulation with a base and an arm.
+    This class manages the simulation environment, camera setup, and object interactions.
+
+    Attributes:
+        plane_id (int): ID of the loaded plane in the PyBullet simulation.
+        frequency (int): Simulation frequency.
+        cam_width (int): Width of the camera view.
+        cam_height (int): Height of the camera view.
+        cam_view_matrix (list): Camera view matrix for rendering images.
+        cam_projection_matrix (list): Camera projection matrix for rendering images.
+        znear (float): Near plane for the camera.
+        zfar (float): Far plane for the camera.
+    """
     def __init__(self):
+        """
+        Initializes the PyBullet client, sets up the simulation environment,
+        and configures the camera parameters.
+        """
         # pybullet.connect(pybullet.DIRECT) # pybullet.GUI for local GUI.
         pybullet.connect(pybullet.GUI) # pybullet.GUI for local GUI.
         pybullet.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -30,7 +47,13 @@ class Client():
         # self.plane_id = pybullet.loadURDF("plane.urdf")
         self.frequency = 120
 
-        # Initialize camera parameters as instance variables
+        # Initialize camera parameters
+        self._init_camera()
+
+    def _init_camera(self):
+        """
+        Initializes camera parameters for the simulation.
+        """
         self.cam_width, self.cam_height = 480, 480
         self.cam_target_pos = [0.0, 0.0, 0.5]
         self.cam_distance = 1.5
@@ -100,18 +123,30 @@ class Client():
         return color, depth, segment
 
     def save_img(self, vector, img_name, img_path):
+        """
+        Saves an image from a given vector to a specified path.
+
+        Args:
+            vector (numpy array): The image data in numpy array format.
+            img_name (str): The name of the file to save the image as.
+            img_path (str): The directory path where the image will be saved.
+        """
         image = Image.fromarray(vector)
         image.save(img_path + '/' + img_name)
         print(f'image is saved at {img_path}/{img_name}')
 
-    def add_table(self, urdf_path, urdf_pose=[1.0, 0.0, 0.0], urdf_orientation=[0, 0, 0.7071, 0.7071]):
-        if not os.path.exists(urdf_path):
-            print(f'Error: cannot find {urdf_path}!')
-            sys.exit(1)
-        table_id = pybullet.loadURDF(urdf_path, basePosition=urdf_pose, baseOrientation=urdf_orientation)
-        return table_id
-
     def add_object(self, urdf_path, urdf_pose, urdf_orientation):
+        """
+        Adds an object to the PyBullet simulation environment.
+
+        Args:
+            urdf_path (str): The file path to the URDF (Unified Robot Description Format) file.
+            urdf_pose (tuple): The base position of the object in the simulation.
+            urdf_orientation (tuple): The base orientation of the object in the simulation.
+
+        Returns:
+            object_id (int): The ID of the object in the PyBullet simulation.
+        """
         if not os.path.exists(urdf_path):
             print(f'Error: cannot find {urdf_path}!')
             sys.exit(1)
@@ -119,6 +154,17 @@ class Client():
         return object_id
 
     def get_bounding_box_default(self, obj_id):
+        """
+        Retrieves the axis-aligned bounding box for a given object in the PyBullet simulation.
+
+        Args:
+            obj_id (int): The ID of the object in the PyBullet simulation.
+
+        Returns:
+            tuple: A tuple containing two lists, the first list contains the minimum x, y, z
+                coordinates, and the second list contains the maximum x, y, z coordinates
+                of the axis-aligned bounding box of the object.
+        """
         (min_x, min_y, min_z), (max_x, max_y, max_z)= pybullet.getAABB(obj_id)
         return [min_x, min_y, min_z], [max_x, max_y, max_z]
 
@@ -137,7 +183,6 @@ class Client():
                 -1, pybullet.getNumJoints(object_id)
             )
         ]
-        print(f'link_ids:{link_ids}')
         min_x, min_y, min_z = float("inf"), float("inf"), float("inf")
         max_x, max_y, max_z = float("-inf"), float("-inf"), float("-inf")
         for link_id in link_ids:
@@ -150,7 +195,7 @@ class Client():
             max_z = max(max_z, z_max)
         
         if print_output:
-            print("-" * 20 + "\n" + "object_id: {}".format(object_id))
+            print("-" * 50 + "\n" + "object_id: {}".format(object_id))
             print("min_x:{:.2f}, min_y:{:.2f}, min_z:{:.2f}".format(min_x, min_y, min_z))
             print("max_x:{:.2f}, max_y:{:.2f}, max_z:{:.2f}".format(max_x, max_y, max_z))
         
@@ -166,7 +211,7 @@ class Client():
         link_ids = [
             i for i in range(-1, pybullet.getNumJoints(object_id))
         ]
-        print(f'link_ids:{link_ids}')
+        line_ids = []
         for link_id in link_ids:
             aabb = pybullet.getAABB(object_id, link_id)
             aabb_min = aabb[0]
@@ -197,12 +242,24 @@ class Client():
             ]
             color = [1, 0, 0]
             for line in lines:
-                pybullet.addUserDebugLine(
+                line_id = pybullet.addUserDebugLine(
                     lineFromXYZ=corners[line[0]],
                     lineToXYZ=corners[line[1]],
                     lineColorRGB=color,
                     lineWidth=2,
                 )
+                line_ids.append(line_id)
+        return line_ids
+
+    def remove_aabb_lines(self, line_ids):
+        """
+        Remove the previously drawn AABB lines from the simulation.
+
+        Args:
+            line_ids: A list of unique identifiers for the lines added by addUserDebugLine.
+        """
+        for line_id in line_ids:
+            pybullet.removeUserDebugItem(line_id)
 
     def draw_aabb_link(self, object_id, link_id=-1):
         """
@@ -248,20 +305,41 @@ class Client():
                 lineWidth=2,
             )
 
-    def wait(self, x): # seconds
+    def wait(self, x):
+        """
+        Pauses the execution for a specified number of seconds.
+
+        Args:
+            x (int or float): The number of seconds to pause the execution.
+        """
         time.sleep(x)
         print("-" * 20 + "\n" + "Has waitted {} seconds".format(x))
 
-    def run(self, x): # steps
+    def run(self, x):
+        """
+        Runs the PyBullet simulation for a specified number of steps.
+
+        Args:
+            x (int): The number of simulation steps to execute.
+        """
         for _ in range(x):
             pybullet.stepSimulation()
             time.sleep(1.0 / self.frequency)
         print("-" * 20 + "\n" + "Has runned {} simulation steps".format(x))
     
     def remove_object(self, object_id):
+        """
+        Removes an object from the PyBullet simulation.
+
+        Args:
+            object_id (int): The ID of the object to be removed from the simulation.
+        """
         pybullet.removeBody(object_id)
 
     def disconnect_pybullet(self):
+        """
+        Disconnects from the PyBullet simulation.
+        """
         pybullet.disconnect()
         print("-" * 20 + "\n" + "The script ends!"+ "\n" + "-" * 20)
 
