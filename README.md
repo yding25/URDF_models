@@ -39,9 +39,7 @@ It serves as a valuable resource for researchers, developers, and hobbyists in t
 ```
 python main.py
 ```
-
-<iframe width="560" height="315" src="URDF_dataset.mp4" frameborder="0" allowfullscreen></iframe>
-
+[![Demo](https://img.youtube.com/vi/If3RQEv8TvQ/0.jpg)](https://www.youtube.com/watch?v=If3RQEv8TvQ)
 
 ### Acknowledgement
 
