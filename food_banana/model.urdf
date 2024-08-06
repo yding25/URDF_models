@@ -17,8 +17,8 @@
       <geometry>
         <mesh filename="textured.dae" scale="1 1 1"/>
       </geometry>
-      <material name="red">
-        <color rgba="0.9 0.6 0.6 1."/>
+      <material name="white">
+        <color rgba="1.0, 1.0, 0.0 1."/>
       </material>
     </visual>
     <collision>
