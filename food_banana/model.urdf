@@ -1,4 +1,4 @@
-<?xml version="0.0" ?>
+<?xml version="1.0" ?>
 <robot name="model.urdf">
   <link name="baseLink">
     <contact>
@@ -17,8 +17,8 @@
       <geometry>
         <mesh filename="textured.dae" scale="1 1 1"/>
       </geometry>
-      <material name="white">
-        <color rgba="1.0, 1.0, 0.0 1."/>
+      <material name="yellow">
+        <color rgba="1.0 1.0 0.0 1.0"/>
       </material>
     </visual>
     <collision>
