@@ -9,12 +9,7 @@ import os, sys
 import time
 import pybullet
 import pybullet_data
-import random
 import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.colors import LinearSegmentedColormap
-import pickle
-from datetime import datetime
 from PIL import Image
 import pandas as pd
 import math
@@ -44,7 +39,7 @@ class Client():
         pybullet.setAdditionalSearchPath(pybullet_data.getDataPath())
         pybullet.setGravity(0, 0, -9.8)
 
-        # self.plane_id = pybullet.loadURDF("plane.urdf")
+        self.plane_id = pybullet.loadURDF("plane.urdf")
         self.frequency = 120
 
         # Initialize camera parameters

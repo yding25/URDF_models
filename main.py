@@ -5,28 +5,15 @@
 @Time        :   2023/12/30 20:43:44
 """
 
-import os, sys
-import time
-import pybullet as p
-import pybullet_data
-import random
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.colors import LinearSegmentedColormap
-import pickle
-from datetime import datetime
-from utils import Client, find_urdf_files_relative, create_excel, euler_to_quaternion
+import os
+from utils import *
 import pandas as pd
-import openpyxl
-import math
 
 # ----------------------------------------------------------------
 # Get path
 # ----------------------------------------------------------------
 utils_path = os.path.join(os.getcwd(), 'utils.py')
 folder_path = os.path.dirname(utils_path)
-# print(f'utils path: {utils_path}')
-# print(f'folder path: {folder_path}')
 
 # ----------------------------------------------------------------
 # Initialize pybullet GUI
@@ -49,12 +36,11 @@ euler_zs = df['euler_z']
 # ----------------------------------------------------------------
 # Load i-th object
 # ----------------------------------------------------------------
-demo.wait(30)
+
 for index in range(0, len(subfolder_names)):
-    # index = 40
     print(f'object index:{indexs[index]}')
     object_path = folder_path + '/' + relative_paths[index]
-    object_pose = [0.0, 0.0, 0.0]
+    object_pose = [0.0, 0.0, 0.3]
     object_orientation = euler_to_quaternion(euler_xs[index], euler_ys[index], euler_zs[index])
     object_id = demo.add_object(object_path, object_pose, object_orientation)
     line_ids = demo.draw_aabb(object_id)
@@ -62,7 +48,7 @@ for index in range(0, len(subfolder_names)):
     [min_x, min_y, min_z], [max_x, max_y, max_z] = demo.get_bounding_box(object_id, print_output=True)
     print(f'size_x:{abs(max_x-min_x)} size_y:{abs(max_y-min_y)} size_z:{abs(max_z-min_z)}')
     color, depth, segment = demo.render_image()
-    demo.wait(1)
+    demo.wait(5)
     demo.remove_object(object_id)
 
 demo.disconnect_pybullet()

@@ -15,9 +15,6 @@
       <geometry>
         <mesh filename="table.obj" scale="1.5 1 0.05"/>
       </geometry>
-      <material name="white">
-        <color rgba="1 1 1 1"/>
-      </material>
     </visual>
 
     <collision>
@@ -34,7 +31,6 @@
       <geometry>
         <mesh filename="table.obj" scale="0.1 0.1 0.95"/>
       </geometry>
-      <material name="white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="-0.65 -0.4 0.29"/>
@@ -54,7 +50,6 @@
       <geometry>
         <mesh filename="table.obj" scale="0.1 0.1 0.95"/>
       </geometry>
-      <material name="white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="-0.65 0.4 0.29"/>
@@ -74,7 +69,6 @@
       <geometry>
         <mesh filename="table.obj" scale="0.1 0.1 0.95"/>
       </geometry>
-      <material name="white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0.65 -0.4 0.29"/>
@@ -94,7 +88,6 @@
       <geometry>
         <mesh filename="table.obj" scale="0.1 0.1 0.95"/>
       </geometry>
-      <material name="white"/>
     </visual>
     <collision>
       <origin rpy="0 0 0" xyz="0.65 0.4 0.29"/>
